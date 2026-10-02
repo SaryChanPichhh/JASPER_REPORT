@@ -1,0 +1,284 @@
+﻿<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="SaleInvoice80Report" language="java" columnCount="1" pageWidth="302" pageHeight="842" columnWidth="292" leftMargin="5" rightMargin="5" topMargin="8" bottomMargin="8" ignorePagination="true" uuid="e9bb1a27-f975-4aa4-98f9-75524c5daafa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PosSaleInvoiceBeanAdapter"/>
+	<style name="ReceiptTitle" fontName="Khmer OS Siemreap" fontSize="13.0" bold="true"/>
+	<style name="ReceiptSubTitle" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true"/>
+	<style name="ReceiptMetaLabel" fontName="Khmer OS Siemreap" fontSize="8.5" forecolor="#444444"/>
+	<style name="ReceiptMetaValue" fontName="Khmer OS Siemreap" fontSize="8.5"/>
+	<style name="Table_CH" mode="Transparent" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true">
+		<box>
+			<topPen lineWidth="0.75" lineStyle="Dashed" lineColor="#333333"/>
+			<bottomPen lineWidth="0.75" lineStyle="Solid" lineColor="#333333"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Transparent" fontName="Khmer OS Siemreap" fontSize="8.5">
+		<box>
+			<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<dataset name="Dataset1" uuid="f8cc048c-a56e-4528-aef6-8d4a5144af06">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PosSaleInvoiceBeanAdapter"/>
+		<query language="sql"><![CDATA[]]></query>
+		<field name="Qty" class="java.lang.Integer"/>
+		<field name="ItemCode" class="java.lang.String"/>
+		<field name="ItemDesc" class="java.lang.String"/>
+		<field name="UnitPrice" class="java.math.BigDecimal"/>
+		<field name="Discount" class="java.math.BigDecimal"/>
+		<field name="TotalPrice" class="java.math.BigDecimal"/>
+	</dataset>
+	<parameter name="NOTE" class="java.lang.String"/>
+	<parameter name="Items" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="ShopName" class="java.lang.String"/>
+	<field name="ShopImage" class="java.lang.String"/>
+	<field name="Note" class="java.lang.String"/>
+	<field name="TransRef" class="java.lang.String"/>
+	<field name="TransDate" class="java.lang.String"/>
+	<field name="CustomerName" class="java.lang.String"/>
+	<field name="TransValueKH" class="java.lang.String"/>
+	<field name="CurrencySymbol" class="java.lang.String"/>
+	<field name="SubCurrencySymbol" class="java.lang.String"/>
+	<field name="TransValue" class="java.lang.String"/>
+	<field name="DeliveryFee" class="java.math.BigDecimal"/>
+	<field name="SubTotal" class="java.lang.String"/>
+	<field name="Vat" class="java.lang.String"/>
+	<field name="Amount" class="java.math.BigDecimal"/>
+	<field name="DiscountInvoice" class="java.lang.String"/>
+	<field name="AmountReceive" class="java.lang.Object"/>
+	<field name="amountReceive.amount" class="java.lang.String"/>
+	<field name="ExchangeRate" class="java.lang.String"/>
+	<field name="Field1" class="java.lang.String"/>
+	<field name="Field2" class="java.lang.String"/>
+	<background splitType="Stretch"/>
+	<title height="0" splitType="Stretch"/>
+	<pageHeader height="0" splitType="Stretch"/>
+	<columnHeader height="138" splitType="Stretch">
+		<element kind="textField" uuid="d458c12c-3a27-4826-a377-5b29a33a6bd2" x="0" y="2" width="292" height="28" fontName="Khmer OS Siemreap" fontSize="13.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{ShopName} != null ? $F{ShopName} : "STORE RECEIPT"]]></expression>
+		</element>
+		<element kind="staticText" uuid="7ab5d18a-4c28-444f-8012-70b9df36e118" x="0" y="30" width="292" height="18" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" forecolor="#555555" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[*** SALES RECEIPT ***]]></text>
+		</element>
+		<element kind="line" uuid="b1130d21-f094-469b-818a-6b83f32c918a" x="0" y="50" width="292" height="1">
+			<pen lineWidth="0.75" lineStyle="Dashed" lineColor="#666666"/>
+		</element>
+		<!-- Receipt No -->
+		<element kind="staticText" uuid="0ea3b9ce-3952-4dda-abde-7d10398f42dd" x="0" y="54" width="85" height="16" style="ReceiptMetaLabel" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Receipt #:]]></text>
+		</element>
+		<element kind="textField" uuid="355e281a-8775-48fe-a065-eaff658aeda2" x="85" y="54" width="207" height="16" style="ReceiptMetaValue" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$F{TransRef} != null ? $F{TransRef} : ""]]></expression>
+		</element>
+		<!-- Date -->
+		<element kind="staticText" uuid="9f2223be-5f89-4a18-a328-55c584783bb2" x="0" y="70" width="85" height="16" style="ReceiptMetaLabel" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Date:]]></text>
+		</element>
+		<element kind="textField" uuid="4a6faade-43cf-4255-94a3-52aca8537d33" x="85" y="70" width="207" height="16" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$F{TransDate} != null ? $F{TransDate} : ""]]></expression>
+		</element>
+		<!-- Customer -->
+		<element kind="staticText" uuid="8cbc9069-2304-4326-a440-bfa4e5937995" x="0" y="86" width="85" height="16" style="ReceiptMetaLabel" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Customer:]]></text>
+		</element>
+		<element kind="textField" uuid="4e810c25-31f7-4d7f-845b-4a492dff9307" x="85" y="86" width="207" height="16" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$F{CustomerName} != null && !$F{CustomerName}.isBlank() ? $F{CustomerName} : "Walk-in Guest"]]></expression>
+		</element>
+		<!-- Field1 (Address / Location) -->
+		<element kind="staticText" uuid="2e24163f-bbf6-4d3f-a8d6-a47f0a572967" x="0" y="102" width="85" height="16" style="ReceiptMetaLabel" hTextAlign="Left" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{Field1} != null && !$F{Field1}.isBlank()]]></printWhenExpression>
+			<text><![CDATA[Address:]]></text>
+		</element>
+		<element kind="textField" uuid="e56d6652-2a2d-4228-af3e-1c7afd7c19de" x="85" y="102" width="207" height="16" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{Field1} != null && !$F{Field1}.isBlank()]]></printWhenExpression>
+			<expression><![CDATA[$F{Field1}]]></expression>
+		</element>
+		<!-- Field2 (Phone / Cashier) -->
+		<element kind="staticText" uuid="1087da3b-7921-4d3c-b4c1-236d3638fb8c" x="0" y="118" width="85" height="16" style="ReceiptMetaLabel" hTextAlign="Left" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{Field2} != null && !$F{Field2}.isBlank()]]></printWhenExpression>
+			<text><![CDATA[Phone/Ref:]]></text>
+		</element>
+		<element kind="textField" uuid="1c67c6d4-03c6-48ae-a9be-54ad0dfd5a45" x="85" y="118" width="207" height="16" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{Field2} != null && !$F{Field2}.isBlank()]]></printWhenExpression>
+			<expression><![CDATA[$F{Field2}]]></expression>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<element kind="component" uuid="ee12c4f6-7dbe-4912-a18a-5df919da041e" x="0" y="2" width="292" height="36">
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<component kind="table">
+					<datasetRun uuid="8b4f6875-b182-41cd-b42b-0ce7db711a4c" subDataset="Dataset1">
+						<dataSourceExpression><![CDATA[$P{Items}]]></dataSourceExpression>
+					</datasetRun>
+					<!-- Item Code -->
+					<column kind="single" uuid="ff5d8a55-0f00-41cb-b3e4-54d9ec0a4fbf" width="50">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="9f75b617-d8b8-484c-ae67-44557114830c" x="0" y="0" width="50" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+								<text><![CDATA[CODE]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="18" style="Table_TD">
+							<element kind="textField" uuid="c0bc7ac4-76f0-477d-b803-65d94264c0ad" x="0" y="0" width="50" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Left" vTextAlign="Middle">
+								<expression><![CDATA[$F{ItemCode} != null ? $F{ItemCode} : ""]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<!-- Description -->
+					<column kind="single" uuid="acfa4698-350a-43eb-b774-7e44de8da7ec" width="105">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="996d4caf-80bf-4a15-b62e-2f364f8df9ce" x="0" y="0" width="105" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+								<text><![CDATA[DESCRIPTION]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="18" style="Table_TD">
+							<element kind="textField" uuid="844b6ef0-f31c-45d4-a23d-791d04cac03a" x="0" y="0" width="105" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Left" vTextAlign="Middle">
+								<expression><![CDATA[$F{ItemDesc} != null ? $F{ItemDesc} : ""]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<!-- Qty -->
+					<column kind="single" uuid="fee46b1c-e695-4b5f-8583-2e736ba8bc54" width="28">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="fb587c38-f731-4b6b-8a81-9083a9cda294" x="0" y="0" width="28" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[QTY]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="18" style="Table_TD">
+							<element kind="textField" uuid="e1f202c5-04f0-4ce3-8d9b-290e03be64a0" x="0" y="0" width="28" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{Qty}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<!-- Unit Price -->
+					<column kind="single" uuid="cfa7ab3a-0738-407e-b6b3-40fa2fddee2b" width="37">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="01d6f250-3223-45e3-8aad-5f98c5488332" x="0" y="0" width="37" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+								<text><![CDATA[PRICE]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="18" style="Table_TD">
+							<element kind="textField" uuid="e75867e6-a460-4f05-ba3d-f891670636d8" x="0" y="0" width="37" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+								<expression><![CDATA[$F{UnitPrice}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<!-- Discount -->
+					<column kind="single" uuid="238b1419-65dc-4282-9102-23a7eca32586" width="30">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="c713a5e3-2e2b-4f50-b087-f45058f02720" x="0" y="0" width="30" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+								<text><![CDATA[DISC]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="18" style="Table_TD">
+							<element kind="textField" uuid="24aa2c4a-9f47-4255-8f1c-dca19be51e1a" x="0" y="0" width="30" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+								<expression><![CDATA[$F{Discount} != null && $F{Discount}.compareTo(java.math.BigDecimal.ZERO) > 0 ? $F{Discount}.toString() : "-"]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<!-- Total -->
+					<column kind="single" uuid="67a253c0-370a-4fad-a217-e9777a4f682f" width="42">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="052a9fdc-8217-4556-b439-fd118708f2a8" x="0" y="0" width="42" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+								<text><![CDATA[TOTAL]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="18" style="Table_TD">
+							<element kind="textField" uuid="2ad8d679-68b6-40a5-934d-eebf65468812" x="0" y="0" width="42" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+								<expression><![CDATA[$F{TotalPrice}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+			</element>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch"/>
+	<pageFooter height="0" splitType="Stretch"/>
+	<summary height="180" splitType="Stretch">
+		<!-- Divider Top -->
+		<element kind="line" uuid="d136df7a-cb72-4668-b7c1-04ef964a2f8b" x="0" y="2" width="292" height="1">
+			<pen lineWidth="0.75" lineStyle="Dashed" lineColor="#666666"/>
+		</element>
+		<!-- Subtotal -->
+		<element kind="staticText" uuid="b36a8171-7c44-4f0f-b59d-3f72cdb7452a" x="0" y="6" width="130" height="17" style="ReceiptMetaLabel" vTextAlign="Middle">
+			<text><![CDATA[Subtotal:]]></text>
+		</element>
+		<element kind="textField" uuid="49b33630-acd3-4e33-a3dc-5c065cc4bab8" x="130" y="6" width="162" height="17" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$F{SubTotal} != null ? $F{SubTotal} : "0.00"]]></expression>
+		</element>
+		<!-- Discount -->
+		<element kind="staticText" uuid="d86ae7e7-f7aa-41f8-93cc-2097d661bc83" x="0" y="23" width="130" height="17" style="ReceiptMetaLabel" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{DiscountInvoice} != null && !$F{DiscountInvoice}.equals("0") && !$F{DiscountInvoice}.equals("0.00") && !$F{DiscountInvoice}.isEmpty()]]></printWhenExpression>
+			<text><![CDATA[Invoice Discount:]]></text>
+		</element>
+		<element kind="textField" uuid="9c1e9517-c980-47da-94e3-c7e08ea48338" x="130" y="23" width="162" height="17" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{DiscountInvoice} != null && !$F{DiscountInvoice}.equals("0") && !$F{DiscountInvoice}.equals("0.00") && !$F{DiscountInvoice}.isEmpty()]]></printWhenExpression>
+			<expression><![CDATA["-" + $F{DiscountInvoice}]]></expression>
+		</element>
+		<!-- Delivery Fee -->
+		<element kind="staticText" uuid="e5536fc6-13de-4abb-a864-812ee4459ded" x="0" y="40" width="130" height="17" style="ReceiptMetaLabel" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{DeliveryFee} != null && $F{DeliveryFee}.compareTo(java.math.BigDecimal.ZERO) > 0]]></printWhenExpression>
+			<text><![CDATA[Delivery Fee:]]></text>
+		</element>
+		<element kind="textField" uuid="c37f3466-1753-4401-b878-1078dfe4fddc" x="130" y="40" width="162" height="17" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{DeliveryFee} != null && $F{DeliveryFee}.compareTo(java.math.BigDecimal.ZERO) > 0]]></printWhenExpression>
+			<expression><![CDATA[$F{DeliveryFee}]]></expression>
+		</element>
+		<!-- VAT / Tax -->
+		<element kind="staticText" uuid="a659e51c-a982-4113-a4fa-38f37bc559f0" x="0" y="57" width="130" height="17" style="ReceiptMetaLabel" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{Vat} != null && !$F{Vat}.isEmpty() && !$F{Vat}.equals("0")]]></printWhenExpression>
+			<text><![CDATA[Tax / VAT:]]></text>
+		</element>
+		<element kind="textField" uuid="b6623e1f-4903-45ab-9fa1-4475cc5f4e30" x="130" y="57" width="162" height="17" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{Vat} != null && !$F{Vat}.isEmpty() && !$F{Vat}.equals("0")]]></printWhenExpression>
+			<expression><![CDATA[$F{Vat}]]></expression>
+		</element>
+		<!-- Total Divider Line -->
+		<element kind="line" uuid="192a7e75-01e4-44d5-8664-9f44f9cf2370" x="0" y="76" width="292" height="1">
+			<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+		</element>
+		<!-- Grand Total -->
+		<element kind="staticText" uuid="066423ae-8dc3-435f-bedc-87576eb027d8" x="0" y="79" width="120" height="22" fontName="Khmer OS Siemreap" fontSize="11.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[TOTAL DUE:]]></text>
+		</element>
+		<element kind="textField" uuid="f1ce91ed-74f1-4d4c-9304-3bcfbd262324" x="120" y="79" width="172" height="22" fontName="Khmer OS Siemreap" fontSize="12.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[($F{CurrencySymbol} != null ? $F{CurrencySymbol} + " " : "$ ") + ($F{TransValue} != null ? $F{TransValue} : "0.00")]]></expression>
+		</element>
+		<!-- Total in KHR (if available) -->
+		<element kind="staticText" uuid="df8a623e-63f5-442a-9bc6-37bc8e2dfb33" x="0" y="103" width="120" height="16" style="ReceiptMetaLabel" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{TransValueKH} != null && !$F{TransValueKH}.isBlank()]]></printWhenExpression>
+			<text><![CDATA[Total (KHR):]]></text>
+		</element>
+		<element kind="textField" uuid="4343e8f9-b5b3-4f55-9495-4a044d4b5de5" x="120" y="103" width="172" height="16" style="ReceiptMetaValue" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{TransValueKH} != null && !$F{TransValueKH}.isBlank()]]></printWhenExpression>
+			<expression><![CDATA[($F{SubCurrencySymbol} != null ? $F{SubCurrencySymbol} + " " : "KHR ") + $F{TransValueKH}]]></expression>
+		</element>
+		<!-- Amount Paid / Received -->
+		<element kind="staticText" uuid="2ad53e45-747c-44b5-b1f1-8d64321125f5" x="0" y="120" width="120" height="16" style="ReceiptMetaLabel" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{amountReceive.amount} != null && !$F{amountReceive.amount}.isBlank()]]></printWhenExpression>
+			<text><![CDATA[Amount Paid:]]></text>
+		</element>
+		<element kind="textField" uuid="7554cec2-5b26-421e-a613-7d48ddbae3d7" x="120" y="120" width="172" height="16" style="ReceiptMetaValue" hTextAlign="Right" vTextAlign="Middle">
+			<printWhenExpression><![CDATA[$F{amountReceive.amount} != null && !$F{amountReceive.amount}.isBlank()]]></printWhenExpression>
+			<expression><![CDATA[($F{CurrencySymbol} != null ? $F{CurrencySymbol} + " " : "$ ") + $F{amountReceive.amount}]]></expression>
+		</element>
+		<!-- Bottom Divider -->
+		<element kind="line" uuid="fa7b63f5-e018-49f3-8f0a-1153e7f4c029" x="0" y="140" width="292" height="1">
+			<pen lineWidth="0.75" lineStyle="Dashed" lineColor="#666666"/>
+		</element>
+		<!-- Note / Thank You -->
+		<element kind="textField" uuid="5de5c009-2502-49c1-ae62-2ded315b3844" x="0" y="145" width="292" height="18" fontName="Khmer OS Siemreap" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$F{Note} != null && !$F{Note}.isBlank() ? $F{Note} : "Thank you for your business!"]]></expression>
+		</element>
+		<element kind="staticText" uuid="af4c7636-d940-43e2-8a4a-24035bce7b14" x="0" y="163" width="292" height="14" fontName="Khmer OS Siemreap" fontSize="7.5" forecolor="#777777" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Powered by MB POS]]></text>
+		</element>
+	</summary>
+</jasperReport>

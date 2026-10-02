@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="DailyClosingInventoryByCategoryA4Report" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1b2c3d4-e5f6-4789-90ab-cdef12345678">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="ReportTitle" fontName="Khmer OS Siemreap" fontSize="13.0" bold="true"/>
+	<style name="ReportSubTitle" fontName="Khmer OS Siemreap" fontSize="11.0" bold="true"/>
+	<style name="TableHeader" mode="Opaque" backcolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" forecolor="#FFFFFF"/>
+	<style name="GroupHeaderStyle" mode="Opaque" backcolor="#FDF2F4" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" forecolor="#8C0A39"/>
+	<style name="GroupFooterStyle" mode="Opaque" backcolor="#F8FAFC" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" forecolor="#0F172A"/>
+	<style name="DetailText" fontName="Khmer OS Siemreap" fontSize="8.0"/>
+	<style name="DetailNumber" fontName="Khmer OS Siemreap" fontSize="8.0"/>
+	<style name="Table_CH" mode="Opaque" backcolor="#E2E8F0" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true">
+		<box>
+			<bottomPen lineWidth="0.5" lineColor="#CBD5E1"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Transparent" fontName="Khmer OS Siemreap" fontSize="8.0">
+		<box>
+			<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#CBD5E1"/>
+		</box>
+	</style>
+
+	<dataset name="PaymentDataset" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c60">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<query language="sql"><![CDATA[]]></query>
+		<field name="paymentType" class="java.lang.String"/>
+		<field name="totalReceived" class="java.lang.String"/>
+		<field name="currencySymbol" class="java.lang.String"/>
+	</dataset>
+
+	<parameter name="ShopName" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Aureum Grand Hotel & Luxury Suites"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ShopImage" class="java.lang.String"/>
+	<parameter name="PrintDate" class="java.lang.String"/>
+	<parameter name="Duration" class="java.lang.String">
+		<defaultValueExpression><![CDATA["All Shifts"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Subtotal" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0.00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DiscountInvoice" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0.00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Vat" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0.00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Expense" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0.00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ExpenseRiel" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CashChange" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0.00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ExchangeRate" class="java.lang.String">
+		<defaultValueExpression><![CDATA["4,100"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TotalDollar" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0.00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TotalRiel" class="java.lang.String">
+		<defaultValueExpression><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CurrencySymbol" class="java.lang.String">
+		<defaultValueExpression><![CDATA["$"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportTitle" class="java.lang.String">
+		<defaultValueExpression><![CDATA["DAILY CLOSING INVENTORY BY CATEGORY REPORT"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PaymentDataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
+
+	<field name="itemCode" class="java.lang.String"/>
+	<field name="itemDesc" class="java.lang.String"/>
+	<field name="qty" class="java.lang.Integer"/>
+	<field name="price" class="java.math.BigDecimal"/>
+	<field name="discountPrice" class="java.math.BigDecimal"/>
+	<field name="finalPrice" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="categoryCode" class="java.lang.Object"/>
+	<field name="categoryDesc" class="java.lang.String"/>
+	<field name="seller" class="java.lang.String"/>
+
+	<variable name="GrandTotalQty" calculation="Sum" class="java.lang.Integer">
+		<expression><![CDATA[$F{qty} != null ? $F{qty} : 0]]></expression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotalAmount" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{total} != null ? $F{total} : java.math.BigDecimal.ZERO]]></expression>
+		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="CategoryTotalQty" calculation="Sum" resetType="Group" resetGroup="CategoryGroup" class="java.lang.Integer">
+		<expression><![CDATA[$F{qty} != null ? $F{qty} : 0]]></expression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="CategoryTotalAmount" calculation="Sum" resetType="Group" resetGroup="CategoryGroup" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{total} != null ? $F{total} : java.math.BigDecimal.ZERO]]></expression>
+		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+
+	<!-- Grouping by categoryCode, displaying categoryDesc -->
+	<group name="CategoryGroup">
+		<expression><![CDATA[$F{categoryCode} != null ? String.valueOf($F{categoryCode}) : ""]]></expression>
+		<groupHeader>
+			<band height="22">
+				<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c70" x="0" y="2" width="555" height="20" style="GroupHeaderStyle">
+					<box>
+						<topPen lineWidth="0.5" lineColor="#CBD5E1"/>
+						<bottomPen lineWidth="0.5" lineColor="#CBD5E1"/>
+					</box>
+					<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c71" x="10" y="0" width="535" height="20" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" forecolor="#8C0A39" vTextAlign="Middle">
+						<expression><![CDATA["CATEGORY: " + ($F{categoryDesc} != null && !$F{categoryDesc}.isBlank() ? $F{categoryDesc} : ("Category " + ($F{categoryCode} != null ? String.valueOf($F{categoryCode}) : "")))]]></expression>
+					</element>
+				</element>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c72" x="0" y="0" width="555" height="22" style="GroupFooterStyle">
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#94A3B8"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#94A3B8"/>
+					</box>
+					<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c73" x="10" y="0" width="335" height="22" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+						<expression><![CDATA["Category Subtotal (" + ($F{categoryDesc} != null && !$F{categoryDesc}.isBlank() ? $F{categoryDesc} : ($F{categoryCode} != null ? String.valueOf($F{categoryCode}) : "")) + "):"]]></expression>
+					</element>
+					<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c74" x="345" y="0" width="40" height="22" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+						<expression><![CDATA[$V{CategoryTotalQty}]]></expression>
+					</element>
+					<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c75" x="495" y="0" width="55" height="22" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+						<expression><![CDATA[$V{CategoryTotalAmount}]]></expression>
+					</element>
+				</element>
+			</band>
+		</groupFooter>
+	</group>
+
+	<background splitType="Stretch"/>
+
+	<!-- Title Banner: Pure White background, No Khmer text, #8C0A39 theme -->
+	<title height="92" splitType="Stretch">
+		<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c80" x="0" y="0" width="555" height="88" backcolor="#FFFFFF" mode="Opaque">
+			<box>
+				<bottomPen lineWidth="1.0" lineColor="#CBD5E1"/>
+			</box>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c81" x="10" y="6" width="535" height="26" forecolor="#1E293B" fontName="Khmer OS Siemreap" fontSize="13.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{ShopName} != null ? $P{ShopName} : "Aureum Grand Hotel & Luxury Suites"]]></expression>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c82" x="10" y="32" width="535" height="22" forecolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="11.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{ReportTitle} != null ? $P{ReportTitle} : "DAILY CLOSING INVENTORY BY CATEGORY REPORT"]]></expression>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c83" x="12" y="60" width="300" height="20" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Left" vTextAlign="Middle">
+				<expression><![CDATA["Duration: " + ($P{Duration} != null && !$P{Duration}.isBlank() ? $P{Duration} : "All Shifts")]]></expression>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c84" x="320" y="60" width="223" height="20" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA["Printed: " + ($P{PrintDate} != null && !$P{PrintDate}.isBlank() ? $P{PrintDate} : new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date()))]]></expression>
+			</element>
+		</element>
+	</title>
+
+	<pageHeader height="0" splitType="Stretch"/>
+
+	<!-- Column Header: Table Header color #8C0A39 -->
+	<columnHeader height="26" splitType="Stretch">
+		<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c90" x="0" y="0" width="555" height="26" backcolor="#8C0A39" mode="Opaque">
+			<!-- NO -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c91" x="0" y="0" width="25" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[NO.]]></text>
+			</element>
+			<!-- ITEM CODE -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c92" x="25" y="0" width="70" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[ITEM CODE]]></text>
+			</element>
+			<!-- DESCRIPTION -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c93" x="95" y="0" width="170" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[DESCRIPTION]]></text>
+			</element>
+			<!-- CASHIER -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c94" x="265" y="0" width="80" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[CASHIER]]></text>
+			</element>
+			<!-- QTY -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c95" x="345" y="0" width="40" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[QTY]]></text>
+			</element>
+			<!-- PRICE -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c96" x="385" y="0" width="60" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<text><![CDATA[PRICE ($)]]></text>
+			</element>
+			<!-- DISC -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c97" x="445" y="0" width="50" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<text><![CDATA[DISC ($)]]></text>
+			</element>
+			<!-- TOTAL -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5c98" x="495" y="0" width="60" height="26" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="7.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<text><![CDATA[TOTAL ($)]]></text>
+			</element>
+		</element>
+	</columnHeader>
+
+	<!-- Detail Band -->
+	<detail>
+		<band height="18" splitType="Stretch">
+			<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca0" x="0" y="0" width="555" height="18">
+				<box>
+					<bottomPen lineWidth="0.5" lineColor="#E2E8F0"/>
+				</box>
+				<!-- NO -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca1" x="0" y="0" width="25" height="18" style="DetailNumber" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$V{REPORT_COUNT}]]></expression>
+				</element>
+				<!-- ITEM CODE -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca2" x="25" y="0" width="70" height="18" style="DetailText" hTextAlign="Left" vTextAlign="Middle">
+					<expression><![CDATA[$F{itemCode} != null ? $F{itemCode} : ""]]></expression>
+				</element>
+				<!-- DESCRIPTION -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca3" x="95" y="0" width="170" height="18" style="DetailText" hTextAlign="Left" vTextAlign="Middle">
+					<expression><![CDATA[$F{itemDesc} != null ? $F{itemDesc} : ""]]></expression>
+				</element>
+				<!-- CASHIER -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca4" x="265" y="0" width="80" height="18" style="DetailText" hTextAlign="Left" vTextAlign="Middle">
+					<expression><![CDATA[$F{seller} != null ? $F{seller} : ""]]></expression>
+				</element>
+				<!-- QTY -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca5" x="345" y="0" width="40" height="18" style="DetailNumber" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$F{qty} != null ? $F{qty} : 0]]></expression>
+				</element>
+				<!-- PRICE -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca6" x="385" y="0" width="60" height="18" style="DetailNumber" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+					<expression><![CDATA[$F{price} != null ? $F{price} : java.math.BigDecimal.ZERO]]></expression>
+				</element>
+				<!-- DISC -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca7" x="445" y="0" width="50" height="18" style="DetailNumber" hTextAlign="Right" vTextAlign="Middle">
+					<expression><![CDATA[($F{discountPrice} != null && $F{discountPrice}.compareTo(java.math.BigDecimal.ZERO) > 0) ? new java.text.DecimalFormat("#,##0.00").format($F{discountPrice}) : "-"]]></expression>
+				</element>
+				<!-- TOTAL -->
+				<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ca8" x="495" y="0" width="55" height="18" style="DetailNumber" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+					<expression><![CDATA[$F{total} != null ? $F{total} : java.math.BigDecimal.ZERO]]></expression>
+				</element>
+			</element>
+		</band>
+	</detail>
+
+	<columnFooter splitType="Stretch"/>
+
+	<!-- Page Footer -->
+	<pageFooter height="20" splitType="Stretch">
+		<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cb0" x="0" y="2" width="350" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+			<expression><![CDATA["Aureum Grand Hotel POS - Daily Closing Inventory By Category Report - " + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())]]></expression>
+		</element>
+		<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cb1" x="405" y="2" width="150" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+
+	<!-- Summary Section -->
+	<summary height="260" splitType="Stretch">
+		<!-- Grand Total Bar -->
+		<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cc0" x="0" y="4" width="555" height="24" backcolor="#8C0A39" mode="Opaque">
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cc1" x="10" y="0" width="335" height="24" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA["GRAND TOTAL:"]]></expression>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cc2" x="345" y="0" width="40" height="24" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$V{GrandTotalQty}]]></expression>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cc3" x="435" y="0" width="115" height="24" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{CurrencySymbol} != null ? $P{CurrencySymbol} + " " : "$ ") + new java.text.DecimalFormat("#,##0.00").format($V{GrandTotalAmount} != null ? $V{GrandTotalAmount} : java.math.BigDecimal.ZERO)]]></expression>
+			</element>
+		</element>
+
+		<!-- Payment Breakdown Box (Left) -->
+		<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cd0" x="0" y="34" width="265" height="142">
+			<box>
+				<pen lineWidth="0.5" lineColor="#CBD5E1"/>
+			</box>
+			<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cd1" x="0" y="0" width="265" height="20" backcolor="#8C0A39" mode="Opaque">
+				<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cd2" x="5" y="0" width="255" height="20" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[PAYMENT METHODS]]></text>
+				</element>
+			</element>
+			<!-- Payment Table Component -->
+			<element kind="component" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cd3" x="5" y="24" width="255" height="112">
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<component kind="table">
+					<datasetRun uuid="e3d2c1b0-9a8b-7c6d-5e4f-3a2b1c0d9e8f" subDataset="PaymentDataset">
+						<dataSourceExpression><![CDATA[$P{PaymentDataSource}]]></dataSourceExpression>
+					</datasetRun>
+					<!-- Payment Type -->
+					<column kind="single" uuid="a1b2c3d4-0001-4444-8888-111122223331" width="155">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="a1b2c3d4-0001-4444-8888-111122223332" x="0" y="0" width="155" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+								<text><![CDATA[  METHOD]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="16" style="Table_TD">
+							<element kind="textField" uuid="a1b2c3d4-0001-4444-8888-111122223333" x="0" y="0" width="155" height="16" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Left" vTextAlign="Middle">
+								<expression><![CDATA["  " + ($F{paymentType} != null ? $F{paymentType} : "")]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<!-- Total Received -->
+					<column kind="single" uuid="a1b2c3d4-0001-4444-8888-111122223334" width="100">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<columnHeader height="18" rowSpan="1" style="Table_CH">
+							<element kind="staticText" uuid="a1b2c3d4-0001-4444-8888-111122223335" x="0" y="0" width="100" height="18" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+								<text><![CDATA[RECEIVED  ]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="16" style="Table_TD">
+							<element kind="textField" uuid="a1b2c3d4-0001-4444-8888-111122223336" x="0" y="0" width="100" height="16" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+								<expression><![CDATA[($F{currencySymbol} != null ? $F{currencySymbol} + " " : "$ ") + ($F{totalReceived} != null ? $F{totalReceived} : "0.00") + "  "]]></expression>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+			</element>
+		</element>
+
+		<!-- Financial Summary Box (Right) -->
+		<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce0" x="275" y="34" width="280" height="142">
+			<box>
+				<pen lineWidth="0.5" lineColor="#CBD5E1"/>
+			</box>
+			<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce1" x="0" y="0" width="280" height="20" backcolor="#8C0A39" mode="Opaque">
+				<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce2" x="10" y="0" width="260" height="20" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[FINANCIAL SUMMARY]]></text>
+				</element>
+			</element>
+			<!-- Subtotal -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce3" x="8" y="22" width="125" height="13" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+				<text><![CDATA[Subtotal:]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce4" x="135" y="22" width="137" height="13" forecolor="#0F172A" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{CurrencySymbol} != null ? $P{CurrencySymbol} + " " : "$ ") + ($P{Subtotal} != null ? $P{Subtotal} : "0.00")]]></expression>
+			</element>
+			<!-- Discount -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce5" x="8" y="35" width="125" height="13" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+				<text><![CDATA[Discount:]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce6" x="135" y="35" width="137" height="13" forecolor="#DC2626" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{DiscountInvoice} != null && !$P{DiscountInvoice}.equals("0") && !$P{DiscountInvoice}.equals("0.00") ? "-" + $P{DiscountInvoice} : "0.00")]]></expression>
+			</element>
+			<!-- VAT -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce7" x="8" y="48" width="125" height="13" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+				<text><![CDATA[VAT:]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce8" x="135" y="48" width="137" height="13" forecolor="#0F172A" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$P{Vat} != null ? $P{Vat} : "0.00"]]></expression>
+			</element>
+			<!-- Expense -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ce9" x="8" y="61" width="125" height="13" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+				<text><![CDATA[Expense ($/KHR):]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cea" x="135" y="61" width="137" height="13" forecolor="#0F172A" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{Expense} != null && !$P{Expense}.isBlank() ? "$" + $P{Expense} : "$0.00") + " / " + ($P{ExpenseRiel} != null && !$P{ExpenseRiel}.isBlank() ? $P{ExpenseRiel} + " KHR" : "0 KHR")]]></expression>
+			</element>
+			<!-- Cash Change -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ceb" x="8" y="74" width="125" height="13" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+				<text><![CDATA[Change:]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cec" x="135" y="74" width="137" height="13" forecolor="#0F172A" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$P{CashChange} != null ? "$" + $P{CashChange} : "$0.00"]]></expression>
+			</element>
+			<!-- Exchange Rate -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5ced" x="8" y="87" width="125" height="13" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="7.5" vTextAlign="Middle">
+				<text><![CDATA[Ex. Rate:]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cee" x="135" y="87" width="137" height="13" forecolor="#0F172A" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA["1 USD = " + ($P{ExchangeRate} != null && !$P{ExchangeRate}.isBlank() ? $P{ExchangeRate} : "4,100") + " KHR"]]></expression>
+			</element>
+			<!-- Divider Line -->
+			<element kind="line" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cef" x="8" y="101" width="264" height="1">
+				<pen lineWidth="0.5" lineColor="#CBD5E1"/>
+			</element>
+			<!-- Net Dollar -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cf0" x="8" y="104" width="125" height="16" forecolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" vTextAlign="Middle">
+				<text><![CDATA[NET TOTAL ($):]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cf1" x="135" y="104" width="137" height="16" forecolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{CurrencySymbol} != null ? $P{CurrencySymbol} + " " : "$ ") + ($P{TotalDollar} != null ? $P{TotalDollar} : "0.00")]]></expression>
+			</element>
+			<!-- Net Riel -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cf2" x="8" y="121" width="125" height="16" forecolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" vTextAlign="Middle">
+				<text><![CDATA[NET TOTAL (KHR):]]></text>
+			</element>
+			<element kind="textField" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5cf3" x="135" y="121" width="137" height="16" forecolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{TotalRiel} != null ? $P{TotalRiel} : "0") + " KHR"]]></expression>
+			</element>
+		</element>
+
+		<!-- Signatures Section -->
+		<element kind="frame" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d00" x="0" y="190" width="555" height="65">
+			<!-- 1. Cashier / Prepared By -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d01" x="15" y="0" width="150" height="16" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Cashier]]></text>
+			</element>
+			<element kind="line" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d02" x="15" y="42" width="150" height="1">
+				<pen lineStyle="Dashed" lineColor="#94A3B8"/>
+			</element>
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d03" x="15" y="46" width="150" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Signature]]></text>
+			</element>
+
+			<!-- 2. Supervisor / Verified By -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d04" x="202" y="0" width="150" height="16" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Supervisor]]></text>
+			</element>
+			<element kind="line" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d05" x="202" y="42" width="150" height="1">
+				<pen lineStyle="Dashed" lineColor="#94A3B8"/>
+			</element>
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d06" x="202" y="46" width="150" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Signature]]></text>
+			</element>
+
+			<!-- 3. Manager / Approved By -->
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d07" x="390" y="0" width="150" height="16" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Manager]]></text>
+			</element>
+			<element kind="line" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d08" x="390" y="42" width="150" height="1">
+				<pen lineStyle="Dashed" lineColor="#94A3B8"/>
+			</element>
+			<element kind="staticText" uuid="d1e2f3a4-b5c6-7a8b-9c0d-1e2f3a4b5d09" x="390" y="46" width="150" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Signature]]></text>
+			</element>
+		</element>
+	</summary>
+</jasperReport>

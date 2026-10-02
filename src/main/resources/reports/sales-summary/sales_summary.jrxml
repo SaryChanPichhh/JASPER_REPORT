@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="Sales_Summary" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a7f29b41-92f1-4ab8-912c-cb09d43501a2">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+
+    <style name="Table_TH" mode="Opaque" backcolor="#1A365D">
+        <box>
+            <pen lineWidth="0.5" lineColor="#CBD5E1"/>
+        </box>
+    </style>
+    <style name="Table_CH" mode="Opaque" backcolor="#2B6CB0">
+        <box>
+            <pen lineWidth="0.5" lineColor="#CBD5E1"/>
+        </box>
+    </style>
+    <style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#E2E8F0"/>
+        </box>
+    </style>
+
+    <parameter name="Mounth" class="java.lang.String"/>
+    <parameter name="BranchName" class="java.lang.String">
+        <defaultValueExpression><![CDATA["Aureum Grand Hotel & Luxury Suites"]]></defaultValueExpression>
+    </parameter>
+
+    <field name="itemCode" class="java.lang.String"/>
+    <field name="description" class="java.lang.String"/>
+    <field name="quantity" class="java.lang.Integer"/>
+    <field name="unitPrice" class="java.lang.Double"/>
+    <field name="amount" class="java.lang.Double"/>
+    <field name="date" class="java.sql.Date"/>
+
+    <variable name="TotalQuantity" class="java.lang.Integer" calculation="Sum">
+        <expression><![CDATA[$F{quantity}]]></expression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="TotalAmount" class="java.lang.Double" calculation="Sum">
+        <expression><![CDATA[$F{amount}]]></expression>
+        <initialValueExpression><![CDATA[0.0]]></initialValueExpression>
+    </variable>
+
+    <background splitType="Stretch"/>
+
+    <title height="120" splitType="Stretch">
+        <element kind="frame" uuid="b1923839-74e2-4ebb-b7c7-6550af830614" x="0" y="0" width="555" height="110" backcolor="#1E3A8A" mode="Opaque">
+            <element kind="textField" uuid="79861c36-dd21-4ebf-a4dc-7fe28a4a8f0b" x="20" y="15" width="515" height="35" forecolor="#FFFFFF" fontName="Khmer OS Muol" fontSize="16.0" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA["Monthly Sales Summary Report (" + ($P{Mounth} != null ? $P{Mounth} : "") + ")"]]></expression>
+            </element>
+            <element kind="textField" uuid="85a3a347-4b9c-4605-ac1d-da906a24dc20" x="20" y="52" width="515" height="25" forecolor="#E0E7FF" fontName="Khmer OS Siemreap" fontSize="11.0" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$P{BranchName}]]></expression>
+            </element>
+            <element kind="staticText" uuid="85a3a347-4b9c-4605-ac1d-da906a24dc25" x="20" y="80" width="100" height="20" forecolor="#CBD5E1" fontName="Khmer OS Siemreap" fontSize="9.0" hTextAlign="Left" vTextAlign="Middle">
+                <text><![CDATA[Printed Date:]]></text>
+            </element>
+            <element kind="textField" uuid="85a3a347-4b9c-4605-ac1d-da906a24dc24" x="125" y="80" width="150" height="20" forecolor="#CBD5E1" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="dd-MM-yyyy HH:mm" hTextAlign="Left" vTextAlign="Middle">
+                <expression><![CDATA[new java.util.Date()]]></expression>
+            </element>
+        </element>
+    </title>
+
+    <columnHeader height="30" splitType="Stretch">
+        <element kind="frame" uuid="c2923839-74e2-4ebb-b7c7-6550af830615" x="0" y="0" width="555" height="30" backcolor="#2563EB" mode="Opaque">
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f61" x="5" y="0" width="90" height="30" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Date]]></text>
+            </element>
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f62" x="100" y="0" width="85" height="30" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Item Code]]></text>
+            </element>
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f63" x="190" y="0" width="165" height="30" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+                <text><![CDATA[Description / Services]]></text>
+            </element>
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f64" x="360" y="0" width="50" height="30" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Qty]]></text>
+            </element>
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f65" x="415" y="0" width="65" height="30" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+                <text><![CDATA[Price ($)]]></text>
+            </element>
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f66" x="485" y="0" width="65" height="30" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+                <text><![CDATA[Total ($)]]></text>
+            </element>
+        </element>
+    </columnHeader>
+
+    <detail>
+        <band height="25" splitType="Stretch">
+            <element kind="frame" uuid="d3923839-74e2-4ebb-b7c7-6550af830616" x="0" y="0" width="555" height="25">
+                <box>
+                    <bottomPen lineWidth="0.5" lineColor="#E2E8F0"/>
+                </box>
+                <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56ffa" x="5" y="0" width="90" height="25" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="dd-MM-yyyy" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{date}]]></expression>
+                </element>
+                <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56ffb" x="100" y="0" width="85" height="25" fontName="Khmer OS Siemreap" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{itemCode}]]></expression>
+                </element>
+                <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56ffc" x="190" y="0" width="165" height="25" fontName="Khmer OS Siemreap" fontSize="9.0" hTextAlign="Left" vTextAlign="Middle">
+                    <expression><![CDATA[$F{description}]]></expression>
+                </element>
+                <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56ffd" x="360" y="0" width="50" height="25" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{quantity}]]></expression>
+                </element>
+                <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56ffe" x="415" y="0" width="65" height="25" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="$#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+                    <expression><![CDATA[$F{unitPrice}]]></expression>
+                </element>
+                <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56fff" x="485" y="0" width="65" height="25" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="$#,##0.00" bold="true" hTextAlign="Right" vTextAlign="Middle">
+                    <expression><![CDATA[$F{amount}]]></expression>
+                </element>
+            </element>
+        </band>
+    </detail>
+
+    <summary height="60" splitType="Stretch">
+        <element kind="frame" uuid="e4923839-74e2-4ebb-b7c7-6550af830617" x="0" y="10" width="555" height="35" backcolor="#F1F5F9" mode="Opaque">
+            <box>
+                <pen lineWidth="1.0" lineColor="#94A3B8"/>
+            </box>
+            <element kind="staticText" uuid="41bcf320-a702-42d0-9a0e-a05d47001f70" x="10" y="0" width="200" height="35" fontName="Khmer OS Muol" fontSize="10.0" hTextAlign="Left" vTextAlign="Middle">
+                <text><![CDATA[Grand Total:]]></text>
+            </element>
+            <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56f71" x="350" y="0" width="60" height="35" fontName="Khmer OS Siemreap" fontSize="10.0" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$V{TotalQuantity}]]></expression>
+            </element>
+            <element kind="textField" uuid="4b72f113-f72f-48a5-b681-c72453f56f72" x="430" y="0" width="120" height="35" forecolor="#1E3A8A" fontName="Khmer OS Siemreap" fontSize="11.0" bold="true" pattern="$#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$V{TotalAmount}]]></expression>
+            </element>
+        </element>
+    </summary>
+</jasperReport>

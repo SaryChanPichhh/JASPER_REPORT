@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies xmlns="http://jasperreports.sourceforge.net/fonts"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/fonts http://jasperreports.sourceforge.net/xsd/fonts.xsd">
+
+    <fontFamily name="Khmer OS">
+        <normal>fonts/KhmerOS.ttf</normal>
+        <bold>fonts/KhmerOS.ttf</bold>
+        <italic>fonts/KhmerOS.ttf</italic>
+        <boldItalic>fonts/KhmerOS.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="net.sf.jasperreports.html">'Khmer OS', sans-serif</export>
+        </exportFonts>
+    </fontFamily>
+
+    <fontFamily name="Khmer OS Muol">
+        <normal>fonts/KhmerOSmuol.ttf</normal>
+        <bold>fonts/KhmerOSmuol.ttf</bold>
+        <italic>fonts/KhmerOSmuol.ttf</italic>
+        <boldItalic>fonts/KhmerOSmuol.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="net.sf.jasperreports.html">'Khmer OS Muol', sans-serif</export>
+        </exportFonts>
+    </fontFamily>
+
+    <fontFamily name="Khmer OS Battambang">
+        <normal>fonts/KhmerOSbattambang.ttf</normal>
+        <bold>fonts/KhmerOSbattambang.ttf</bold>
+        <italic>fonts/KhmerOSbattambang.ttf</italic>
+        <boldItalic>fonts/KhmerOSbattambang.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="net.sf.jasperreports.html">'Khmer OS Battambang', sans-serif</export>
+        </exportFonts>
+    </fontFamily>
+
+    <fontFamily name="Khmer OS Siemreap">
+        <normal>fonts/KhmerOSsiemreap.ttf</normal>
+        <bold>fonts/KhmerOSsiemreap.ttf</bold>
+        <italic>fonts/KhmerOSsiemreap.ttf</italic>
+        <boldItalic>fonts/KhmerOSsiemreap.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="net.sf.jasperreports.html">'Khmer OS Siemreap', sans-serif</export>
+        </exportFonts>
+    </fontFamily>
+
+</fontFamilies>

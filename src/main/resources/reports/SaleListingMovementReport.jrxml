@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="SaleListingMovementReport" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="ReportTitle" fontName="Khmer OS Muol" fontSize="13.0" bold="true"/>
+	<style name="ReportSubTitle" fontName="Khmer OS Siemreap" fontSize="11.0" bold="true"/>
+	<style name="TableHeader" mode="Opaque" backcolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" forecolor="#FFFFFF"/>
+	<style name="GroupHeaderStyle" mode="Opaque" backcolor="#FDF2F4" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" forecolor="#8C0A39"/>
+	<style name="GroupFooterStyle" mode="Opaque" backcolor="#F8FAFC" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" forecolor="#0F172A"/>
+	<style name="DetailText" fontName="Khmer OS Siemreap" fontSize="8.5"/>
+	<style name="DetailNumber" fontName="Khmer OS Siemreap" fontSize="8.5"/>
+
+	<parameter name="ShopName" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Aureum Grand Hotel & Luxury Suites"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ShopImage" class="java.lang.String"/>
+	<parameter name="StartDate" class="java.lang.String"/>
+	<parameter name="EndDate" class="java.lang.String"/>
+	<parameter name="PrintDate" class="java.lang.String"/>
+	<parameter name="CurrencySymbol" class="java.lang.String">
+		<defaultValueExpression><![CDATA["$"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportTitle" class="java.lang.String">
+		<defaultValueExpression><![CDATA["SALE LISTING MOVEMENT REPORT"]]></defaultValueExpression>
+	</parameter>
+
+	<field name="itemCode" class="java.lang.String"/>
+	<field name="itemDesc" class="java.lang.String"/>
+	<field name="totalPurchaseQty" class="java.lang.Integer"/>
+	<field name="totalPurchaseCost" class="java.math.BigDecimal"/>
+	<field name="totalSaleQty" class="java.lang.Integer"/>
+	<field name="totalSaleCost" class="java.math.BigDecimal"/>
+	<field name="totalRemainQty" class="java.lang.Integer"/>
+	<field name="totalRemainCost" class="java.math.BigDecimal"/>
+
+	<variable name="GrandTotalPurchaseQty" calculation="Sum" class="java.lang.Integer">
+		<expression><![CDATA[$F{totalPurchaseQty} != null ? $F{totalPurchaseQty} : 0]]></expression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotalPurchaseCost" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{totalPurchaseCost} != null ? $F{totalPurchaseCost} : java.math.BigDecimal.ZERO]]></expression>
+		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotalSaleQty" calculation="Sum" class="java.lang.Integer">
+		<expression><![CDATA[$F{totalSaleQty} != null ? $F{totalSaleQty} : 0]]></expression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotalSaleCost" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{totalSaleCost} != null ? $F{totalSaleCost} : java.math.BigDecimal.ZERO]]></expression>
+		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotalRemainQty" calculation="Sum" class="java.lang.Integer">
+		<expression><![CDATA[$F{totalRemainQty} != null ? $F{totalRemainQty} : 0]]></expression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="GrandTotalRemainCost" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{totalRemainCost} != null ? $F{totalRemainCost} : java.math.BigDecimal.ZERO]]></expression>
+		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+
+	<background splitType="Stretch"/>
+
+	<title height="95" splitType="Stretch">
+		<element kind="frame" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c10" x="0" y="0" width="802" height="90" backcolor="#FFFFFF" mode="Opaque">
+			<box>
+				<bottomPen lineWidth="1.0" lineColor="#CBD5E1"/>
+			</box>
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c11" x="10" y="6" width="782" height="30" forecolor="#1E293B" fontName="Khmer OS Siemreap" fontSize="13.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{ShopName} != null ? $P{ShopName} : "Aureum Grand Hotel & Luxury Suites"]]></expression>
+			</element>
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c12" x="10" y="36" width="782" height="24" forecolor="#8C0A39" fontName="Khmer OS Siemreap" fontSize="11.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA["" + ($P{ReportTitle} != null ? $P{ReportTitle} : "SALE LISTING MOVEMENT REPORT")]]></expression>
+			</element>
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c13" x="15" y="64" width="450" height="20" forecolor="#475569" fontName="Khmer OS Siemreap" fontSize="8.5" hTextAlign="Left" vTextAlign="Middle">
+				<expression><![CDATA["Period: " + ($P{StartDate} != null && !$P{StartDate}.isBlank() ? $P{StartDate} : "All") + "  To:  " + ($P{EndDate} != null && !$P{EndDate}.isBlank() ? $P{EndDate} : "All")]]></expression>
+			</element>
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c14" x="500" y="64" width="287" height="20" forecolor="#64748B" fontName="Khmer OS Siemreap" fontSize="8.5" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA["Printed: " + ($P{PrintDate} != null && !$P{PrintDate}.isBlank() ? $P{PrintDate} : new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date()))]]></expression>
+			</element>
+		</element>
+	</title>
+
+	<pageHeader height="0" splitType="Stretch"/>
+
+	<columnHeader height="28" splitType="Stretch">
+		<element kind="frame" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c20" x="0" y="0" width="802" height="28" backcolor="#8C0A39" mode="Opaque">
+			<!-- NO -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c21" x="0" y="0" width="30" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[NO.]]></text>
+			</element>
+			<!-- ITEM CODE -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c22" x="30" y="0" width="80" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[ITEM CODE]]></text>
+			</element>
+			<!-- DESCRIPTION -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c23" x="110" y="0" width="192" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[DESCRIPTION]]></text>
+			</element>
+			<!-- PURCHASE QTY -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c24" x="302" y="0" width="70" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[PUR. QTY]]></text>
+			</element>
+			<!-- PURCHASE COST -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c25" x="372" y="0" width="90" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<text><![CDATA[PUR. COST ($)]]></text>
+			</element>
+			<!-- SALE QTY -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c26" x="462" y="0" width="70" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[SALE QTY]]></text>
+			</element>
+			<!-- SALE COST -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c27" x="532" y="0" width="90" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<text><![CDATA[SALE COST ($)]]></text>
+			</element>
+			<!-- REMAIN QTY -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c28" x="622" y="0" width="70" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[REMAIN QTY]]></text>
+			</element>
+			<!-- REMAIN COST -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c29" x="692" y="0" width="110" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<text><![CDATA[REMAIN COST ($)]]></text>
+			</element>
+		</element>
+	</columnHeader>
+
+	<detail>
+		<band height="20" splitType="Stretch">
+			<element kind="frame" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c30" x="0" y="0" width="802" height="20">
+				<box>
+					<bottomPen lineWidth="0.5" lineColor="#E2E8F0"/>
+				</box>
+				<!-- NO -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c31" x="0" y="0" width="30" height="20" style="DetailNumber" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$V{REPORT_COUNT}]]></expression>
+				</element>
+				<!-- ITEM CODE -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c32" x="30" y="0" width="80" height="20" style="DetailText" hTextAlign="Left" vTextAlign="Middle">
+					<expression><![CDATA[$F{itemCode} != null ? $F{itemCode} : ""]]></expression>
+				</element>
+				<!-- DESCRIPTION -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c33" x="110" y="0" width="192" height="20" style="DetailText" hTextAlign="Left" vTextAlign="Middle">
+					<expression><![CDATA[$F{itemDesc} != null ? $F{itemDesc} : ""]]></expression>
+				</element>
+				<!-- PURCHASE QTY -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c34" x="302" y="0" width="70" height="20" style="DetailNumber" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$F{totalPurchaseQty} != null ? $F{totalPurchaseQty} : 0]]></expression>
+				</element>
+				<!-- PURCHASE COST -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c35" x="372" y="0" width="90" height="20" style="DetailNumber" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+					<expression><![CDATA[$F{totalPurchaseCost} != null ? $F{totalPurchaseCost} : java.math.BigDecimal.ZERO]]></expression>
+				</element>
+				<!-- SALE QTY -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c36" x="462" y="0" width="70" height="20" style="DetailNumber" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$F{totalSaleQty} != null ? $F{totalSaleQty} : 0]]></expression>
+				</element>
+				<!-- SALE COST -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c37" x="532" y="0" width="90" height="20" style="DetailNumber" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+					<expression><![CDATA[$F{totalSaleCost} != null ? $F{totalSaleCost} : java.math.BigDecimal.ZERO]]></expression>
+				</element>
+				<!-- REMAIN QTY -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c38" x="622" y="0" width="70" height="20" style="DetailNumber" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$F{totalRemainQty} != null ? $F{totalRemainQty} : 0]]></expression>
+				</element>
+				<!-- REMAIN COST -->
+				<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c39" x="692" y="0" width="110" height="20" style="DetailNumber" bold="true" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+					<expression><![CDATA[$F{totalRemainCost} != null ? $F{totalRemainCost} : java.math.BigDecimal.ZERO]]></expression>
+				</element>
+			</element>
+		</band>
+	</detail>
+
+	<columnFooter splitType="Stretch"/>
+
+	<pageFooter height="20" splitType="Stretch">
+		<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c40" x="0" y="2" width="400" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="8.0" vTextAlign="Middle">
+			<expression><![CDATA["Aureum Grand Hotel POS - Sale Listing Movement Report - " + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())]]></expression>
+		</element>
+		<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c41" x="652" y="2" width="150" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+
+	<summary height="115" splitType="Stretch">
+		<!-- Grand Total Bar -->
+		<element kind="frame" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c50" x="0" y="6" width="802" height="28" backcolor="#8C0A39" mode="Opaque">
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c51" x="10" y="0" width="292" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA["GRAND TOTAL:"]]></expression>
+			</element>
+			<!-- Total Purchase Qty -->
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c52" x="302" y="0" width="70" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$V{GrandTotalPurchaseQty}]]></expression>
+			</element>
+			<!-- Total Purchase Cost -->
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c53" x="372" y="0" width="90" height="28" forecolor="#FDF2F4" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$V{GrandTotalPurchaseCost}]]></expression>
+			</element>
+			<!-- Total Sale Qty -->
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c54" x="462" y="0" width="70" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$V{GrandTotalSaleQty}]]></expression>
+			</element>
+			<!-- Total Sale Cost -->
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c55" x="532" y="0" width="90" height="28" forecolor="#FDF2F4" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$V{GrandTotalSaleCost}]]></expression>
+			</element>
+			<!-- Total Remain Qty -->
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c56" x="622" y="0" width="70" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$V{GrandTotalRemainQty}]]></expression>
+			</element>
+			<!-- Total Remain Cost -->
+			<element kind="textField" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c57" x="692" y="0" width="105" height="28" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.5" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[($P{CurrencySymbol} != null ? $P{CurrencySymbol} + " " : "$ ") + new java.text.DecimalFormat("#,##0.00").format($V{GrandTotalRemainCost} != null ? $V{GrandTotalRemainCost} : java.math.BigDecimal.ZERO)]]></expression>
+			</element>
+		</element>
+
+		<!-- Signatures Section -->
+		<element kind="frame" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c60" x="0" y="44" width="802" height="65">
+			<!-- 1. Prepared By -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c61" x="40" y="0" width="180" height="16" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Prepared By]]></text>
+			</element>
+			<element kind="line" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c62" x="40" y="42" width="180" height="1">
+				<pen lineStyle="Dashed" lineColor="#94A3B8"/>
+			</element>
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c63" x="40" y="46" width="180" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Inventory Officer]]></text>
+			</element>
+
+			<!-- 2. Verified By -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c64" x="310" y="0" width="180" height="16" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Verified By]]></text>
+			</element>
+			<element kind="line" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c65" x="310" y="42" width="180" height="1">
+				<pen lineStyle="Dashed" lineColor="#94A3B8"/>
+			</element>
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c66" x="310" y="46" width="180" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Cost Controller]]></text>
+			</element>
+
+			<!-- 3. Approved By -->
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c67" x="580" y="0" width="180" height="16" fontName="Khmer OS Siemreap" fontSize="8.5" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Approved By]]></text>
+			</element>
+			<element kind="line" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c68" x="580" y="42" width="180" height="1">
+				<pen lineStyle="Dashed" lineColor="#94A3B8"/>
+			</element>
+			<element kind="staticText" uuid="f1a2b3c4-d5e6-7a8b-9c0d-1e2f3a4b5c69" x="580" y="46" width="180" height="16" forecolor="#94A3B8" fontName="Khmer OS Siemreap" fontSize="7.5" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Financial Controller / GM]]></text>
+			</element>
+		</element>
+	</summary>
+</jasperReport>

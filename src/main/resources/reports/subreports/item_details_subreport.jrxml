@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="Item_Details_Subreport" language="java" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+
+    <field name="itemCode" class="java.lang.String"/>
+    <field name="description" class="java.lang.String"/>
+    <field name="quantity" class="java.lang.Integer"/>
+    <field name="unitPrice" class="java.lang.Double"/>
+    <field name="amount" class="java.lang.Double"/>
+
+    <columnHeader height="25" splitType="Stretch">
+        <element kind="frame" uuid="sub11111-2222-3333-4444-555566667777" x="0" y="0" width="555" height="25" backcolor="#334155" mode="Opaque">
+            <element kind="staticText" uuid="sub11111-2222-3333-4444-555566667778" x="5" y="0" width="80" height="25" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Code]]></text>
+            </element>
+            <element kind="staticText" uuid="sub11111-2222-3333-4444-555566667779" x="90" y="0" width="220" height="25" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+                <text><![CDATA[Description]]></text>
+            </element>
+            <element kind="staticText" uuid="sub11111-2222-3333-4444-55556666777a" x="315" y="0" width="50" height="25" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Qty]]></text>
+            </element>
+            <element kind="staticText" uuid="sub11111-2222-3333-4444-55556666777b" x="370" y="0" width="85" height="25" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+                <text><![CDATA[Price]]></text>
+            </element>
+            <element kind="staticText" uuid="sub11111-2222-3333-4444-55556666777c" x="460" y="0" width="90" height="25" forecolor="#FFFFFF" fontName="Khmer OS Siemreap" fontSize="9.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+                <text><![CDATA[Amount]]></text>
+            </element>
+        </element>
+    </columnHeader>
+
+    <detail>
+        <band height="22" splitType="Stretch">
+            <element kind="frame" uuid="sub22222-3333-4444-5555-666677778888" x="0" y="0" width="555" height="22">
+                <box>
+                    <bottomPen lineWidth="0.5" lineColor="#E2E8F0"/>
+                </box>
+                <element kind="textField" uuid="sub22222-3333-4444-5555-666677778889" x="5" y="0" width="80" height="22" fontName="Khmer OS Siemreap" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{itemCode}]]></expression>
+                </element>
+                <element kind="textField" uuid="sub22222-3333-4444-5555-66667777888a" x="90" y="0" width="220" height="22" fontName="Khmer OS Siemreap" fontSize="9.0" hTextAlign="Left" vTextAlign="Middle">
+                    <expression><![CDATA[$F{description}]]></expression>
+                </element>
+                <element kind="textField" uuid="sub22222-3333-4444-5555-66667777888b" x="315" y="0" width="50" height="22" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="#,##0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{quantity}]]></expression>
+                </element>
+                <element kind="textField" uuid="sub22222-3333-4444-5555-66667777888c" x="370" y="0" width="85" height="22" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="$#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+                    <expression><![CDATA[$F{unitPrice}]]></expression>
+                </element>
+                <element kind="textField" uuid="sub22222-3333-4444-5555-66667777888d" x="460" y="0" width="90" height="22" fontName="Khmer OS Siemreap" fontSize="9.0" pattern="$#,##0.00" bold="true" hTextAlign="Right" vTextAlign="Middle">
+                    <expression><![CDATA[$F{amount}]]></expression>
+                </element>
+            </element>
+        </band>
+    </detail>
+</jasperReport>
